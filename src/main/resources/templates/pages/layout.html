@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Movie Theater</title>
+    <!--CSS-->
+    <link rel="stylesheet" th:href="@{/css/common/bootstrap-grid.min.css}">
+    <link rel="stylesheet" th:href="@{/css/common/bootstrap-reboot.css}">
+    <link rel="stylesheet" th:href="@{/css/common/magnific-popup.css}">
+    <link rel="stylesheet" th:href="@{/css/common/select2.min.css}">
+    <th:block layout:fragment="css"></th:block>
+</head>
+<body>
+    <div th:replace="~{component/header :: header}"></div>
+    <th:block layout:fragment="content"></th:block>
+    <div th:replace="~{component/footer :: footer}"></div>
+
+    <th:block layout:fragment="modal"></th:block>
+<!--    <div th:replace="~{toast/toast-success :: toast-success}"></div>-->
+<!--    <div th:replace="~{toast/toast-error :: toast-error}"></div>-->
+
+    <script th:src="@{/js/common/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/common/jquery.magnific-popup.min.js}"></script>
+    <script th:src="@{/js/common/select2.min.js}"></script>
+    <script th:src="@{/js/common/smooth-scrollbar}"></script>
+    <script th:src="@{/js/common/jquery-3.5.1.min.js}"></script>
+    <th:block layout:fragment="js"></th:block>
+</body>
+</html>
