@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin-layout.html}">
+<head>
+    <title>Admin Cinema Room</title>
+    <link rel="stylesheet" th:href="@{/css/admin/admin-cinema-room.css}">
+</head>
+<body>
+    <main layout:fragment="admin-content">
+        <div class="container-fluid content mt-4">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-10">
+                    <div class="cinema-room">
+                        <h4 class="text-center" style="color: burlywood">
+                            Cinema Room Seats Setting
+                        </h4>
+                        <form class="row g-3">
+                            <div class="col-6">
+                                <label for="inputAddress" class="form-label">Room</label>
+                                <input type="text" class="form-control" id="inputAddress" />
+                            </div>
+                            <div class="col-6">
+                                <label for="inputAddress2" class="form-label">Note</label>
+                                <input type="text" class="form-control" id="inputAddress2" />
+                            </div>
+                            <div class="col-md-4">
+                                <label for="inputState" class="form-label"
+                                >Seat Quantity</label
+                                >
+                                <select id="inputState" class="form-select">
+                                    <option selected>Choose...</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="inputCity" class="form-label">Column</label>
+                                <input type="text" class="form-control" id="inputCity" />
+                            </div>
+                            <div class="col-md-4">
+                                <label for="inputZip" class="form-label">Row</label>
+                                <input type="text" class="form-control" id="inputZip" />
+                            </div>
+                            <div class="col-12 text-end">
+                                <button type="submit" class="btn btn-outline-success">
+                                    Generate
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <h4 class="text-center mt-3" style="color: azure">Room Overview</h4>
+                    <div class="overview-room mt-2">
+                        <div class="overview-room-1">
+                            <h4 class="text-center" style="color: aqua">Room 1</h4>
+                            <div class="container">
+                                <div class="screen"></div>
+
+                                <div class="row">
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overview-room-2">
+                            <h4 class="text-center" style="color: antiquewhite">Room 2</h4>
+                            <div class="container">
+                                <div class="screen"></div>
+
+                                <div class="row">
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overview-room-3">
+                            <h4 class="text-center" style="color: darkcyan">Room 3</h4>
+                            <div class="container">
+                                <div class="screen"></div>
+
+                                <div class="row">
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                    <div class="seat"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

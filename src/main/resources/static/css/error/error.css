@@ -1,0 +1,15 @@
+.page-404__content h1{
+    color: #0a58ca;
+    font-size: 180px;
+    font-weight: bold;
+}
+
+.page-404__content p{
+    color: #fff;
+}
+
+.page-404__wrap{
+    padding: 60px 40px;
+    justify-content: center;
+    height: 520px;
+}

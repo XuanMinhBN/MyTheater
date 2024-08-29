@@ -1,0 +1,77 @@
+/* Main */
+.form-box {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(75, 74, 74, 0.349);
+    padding: 20px;
+    border-radius: 20px;
+    align-items: center;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.toggle-btn {
+    color: azure;
+}
+
+.button-box {
+    width: 320px;
+    margin: 0;
+    position: relative;
+    border-radius: 30px;
+    background: transparent;
+    display: flex;
+    border: 1px solid azure;
+}
+
+.toggle-btn {
+    padding: 10px 10px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+    text-align: center;
+    width: 200px;
+}
+
+#btn {
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 160px;
+    height: 100%;
+    background: azure;
+    opacity: 0.5;
+    border-radius: 30px;
+    transition: 0.5s;
+}
+
+.dropdown button {
+    background-color: transparent;
+}
+
+.paginate {
+    display: flex;
+    justify-content: center;
+}
+
+.card{
+    background-color: transparent;
+}
+
+.card h5, .card p{
+    color: azure;
+}
+
+.card img:hover{
+    transform: translateY(-10px);
+    transition: 0.2s all linear;
+}
+
+.form-check{
+    text-align: center;
+}
+
+form button .bi .bi-search{
+    color: azure !important;
+}

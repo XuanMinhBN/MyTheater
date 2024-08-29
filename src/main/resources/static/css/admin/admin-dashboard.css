@@ -1,0 +1,13 @@
+/* Main */
+.content {
+    border: none;
+}
+
+.card {
+    background-color: transparent;
+}
+
+.dashboard-card {
+    display: flex;
+    justify-content: space-evenly;
+}

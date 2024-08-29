@@ -1,0 +1,101 @@
+/* Header */
+.container-fluid {
+    border-bottom: 1px solid gray;
+}
+
+.container-fluid .dashboard-header {
+    background-color: rgba(75, 74, 74, 0.349);
+    position: absolute;
+}
+
+.col-2 {
+    padding: 0;
+}
+
+.navbar {
+    color: azure;
+    text-align: center;
+}
+
+.navbar h3 {
+    margin: 0;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(75, 74, 74, 0.349);
+    width: 300px;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+}
+
+.sidebar {
+    border: none;
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 70px;
+    padding: 0 30px;
+    background-color: rgba(75, 74, 74, 0.349);
+    width: 100%;
+    position: relative;
+}
+
+.function ul {
+    list-style: none;
+}
+
+.function ul li {
+    font-size: 20px;
+    font-weight: 300;
+    margin: 20px 0px;
+}
+
+.function a {
+    text-decoration: none;
+    color: azure;
+}
+
+.function .dash-board:hover {
+    color: antiquewhite;
+}
+
+.function .schedule:hover {
+    color: aquamarine;
+}
+
+.function .promotion:hover {
+    color: pink;
+}
+
+.function .seats:hover {
+    color: greenyellow;
+}
+
+.function .ticket:hover {
+    color: dodgerblue;
+}
+
+.function .user:hover {
+    color: peru;
+}
+
+.function .back:hover {
+    color: rosybrown;
+}
+
+.copyright {
+    margin-top: 440px;
+}
+
+.copyright p {
+    color: azure;
+    font-size: 12px;
+}

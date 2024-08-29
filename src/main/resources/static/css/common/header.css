@@ -1,0 +1,48 @@
+/* Header */
+.navbar {
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: transparent;
+}
+
+.navbar .container-fluid {
+    justify-content: space-between;
+}
+
+form .form-control {
+    border: none;
+    border-radius: 70px;
+    width: 100%;
+    background-color: transparent;
+}
+
+form .btn {
+    background-color: transparent;
+    border: none;
+}
+
+form .btn:hover {
+    color: azure;
+}
+
+.search-bar {
+    display: flex;
+    border: 1px solid gray;
+    border-radius: 70px;
+    background-color: rgba(75, 74, 74, 0.349);
+    padding-right: 10px;
+}
+
+.account img {
+    background-color: gray;
+    border-radius: 50%;
+}
+
+.account {
+    margin-left: 20px;
+}
+
+.account a {
+    text-decoration: none;
+    color: azure;
+}

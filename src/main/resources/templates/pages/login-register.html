@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Login</title>
+    <!--CSS-->
+    <link rel="stylesheet" th:href="@{/css/auth/login-register.css}">
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css}">
+</head>
+<body>
+    <!-- sign in -->
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form>
+                <h1>Create Account</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <input type="text" placeholder="Identity Card" required>
+                <input type="email" placeholder="Email" required>
+                <input type="text" placeholder="Phone Number" required>
+                <button>Sign Up</button>
+                <a th:href="@{/main/home/1}">Back To Home Page</a>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form th:action="@{/main/login}" method="post">
+                <h1>Sign In</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+                <span>or use your username password</span>
+                <input type="text" placeholder="Username" name="username" required>
+                <input type="password" placeholder="Password" name="password" required>
+                <a href="#">Forget Your Password?</a>
+                <button type="submit">Sign In</button>
+                <a th:href="@{/main/home/1}">Back To Home Page</a>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Enter your personal details to use all of site features</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Register with your personal details to use all of site features</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end sign in -->
+
+    <script th:src="@{/js/auth/login-register.js}"></script>
+</body>
+</html>

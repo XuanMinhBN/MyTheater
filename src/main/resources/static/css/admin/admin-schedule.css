@@ -1,0 +1,36 @@
+/* Main */
+.content {
+    border: none;
+}
+
+.set-schedule {
+    padding: 10px;
+    border: 1px solid azure;
+    border-radius: 10px;
+}
+
+label {
+    color: azure;
+}
+
+.form-control,
+.form-select {
+    background-color: rgba(75, 74, 74, 0.349);
+    color: azure;
+}
+
+.form-control::placeholder,
+.form-select::placeholder {
+    color: azure;
+}
+
+.form-control:placeholder-shown,
+.form-select:placeholder-shown {
+    color: black;
+}
+
+.view-schedule {
+    padding: 10px;
+    border: 1px solid azure;
+    border-radius: 10px;
+}
