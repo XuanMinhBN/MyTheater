@@ -9,6 +9,7 @@ import lombok.Setter;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -27,10 +28,10 @@ public class RoomSchedule {
     private LocalDate showDate;
 
     @Column(name = "start_time")
-    private Timestamp startTime;
+    private LocalTime startTime;
 
     @Column(name = "end_time")
-    private Timestamp endTime;
+    private LocalTime endTime;
 
     @OneToMany(mappedBy = "roomSchedule", cascade = CascadeType.ALL)
     private List<Ticket> tickets;

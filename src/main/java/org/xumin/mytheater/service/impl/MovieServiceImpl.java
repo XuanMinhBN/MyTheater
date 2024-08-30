@@ -24,6 +24,11 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    public List<Movie> getMoviesToday() {
+        return movieRepository.findMovieToday();
+    }
+
+    @Override
     public Page<Movie> findMovieByMovieNameEnglishOrMovieNameVnContaining(String nameEng, String nameVn, Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page-1,size);
         if (nameEng != null){
@@ -34,9 +39,8 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Page<Movie> findMovieShowingNow(Integer page, Integer size) {
-        LocalDate sevenDaysAgo = LocalDate.now();
         Pageable pageable = PageRequest.of(page-1,size);
-        return movieRepository.findMovieShowingNow(sevenDaysAgo, pageable);
+        return movieRepository.findMovieShowingNow(pageable);
     }
 
     @Override
@@ -52,7 +56,7 @@ public class MovieServiceImpl implements MovieService {
         if(genresId != null && !genresId.isEmpty()){
             return movieRepository.findMovieByGenres(genresId,pageable);
         }else{
-            return movieRepository.findMovieShowingNow(LocalDate.now(), pageable);
+            return movieRepository.findMovieShowingNow(pageable);
         }
     }
 

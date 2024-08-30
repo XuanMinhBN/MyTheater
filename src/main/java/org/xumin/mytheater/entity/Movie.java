@@ -43,7 +43,7 @@ public class Movie {
     private String productionCompany;
 
     @Column(name = "duration")
-    private int duration;
+    private Long duration;
 
     @Column(name = "release_date")
     private LocalDate releaseDate;

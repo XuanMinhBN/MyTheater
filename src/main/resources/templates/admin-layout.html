@@ -18,5 +18,10 @@
 <body>
     <div th:replace="~{pages/admin/admin-header :: admin-header}"></div>
     <th:block layout:fragment="admin-content"></th:block>
+<!--    <div th:replace="~{toast/toast-success :: toast-success}"></div>-->
+<!--    <div th:replace="~{toast/toast-error :: toast-error}"></div>-->
+    <script th:src="@{/js/bootstrap/bootstrap.bundle.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+    <th:block layout:fragment="js"></th:block>
 </body>
 </html>

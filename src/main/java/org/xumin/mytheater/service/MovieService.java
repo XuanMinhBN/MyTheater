@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MovieService {
+    List<Movie> getMoviesToday();
+
     Page<Movie> findMovieByMovieNameEnglishOrMovieNameVnContaining(String nameEng, String nameVn, Integer page, Integer size);
 
     Page<Movie> findMovieShowingNow(Integer page, Integer size);

@@ -14,8 +14,15 @@ import java.util.List;
 
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Long>, PagingAndSortingRepository<Movie, Long> {
-    @Query("SELECT m FROM Movie m WHERE m.releaseDate <= :sevenDaysAgo AND m.expireDate >= :sevenDaysAgo")
-    Page<Movie> findMovieShowingNow(@Param("sevenDaysAgo") LocalDate sevenDaysAgo, Pageable pageable);
+    @Query(value = "SELECT m.movie_id, m.movie_name_vn, m.movie_name_eng, m.content, m.director, m.actor, m.movie_production_company, m.duration, m.release_date, m.expire_date, m.rated, m.large_image, m.small_image " +
+            "FROM movie m WHERE now() <= adddate(now(),7) and adddate(now(),7) <= m.expire_date and now() > m.release_date " +
+            "ORDER BY m.release_date", nativeQuery = true)
+    List<Movie> findMovieToday();
+
+    @Query(value = "SELECT m.movie_id, m.movie_name_vn, m.movie_name_eng, m.content, m.director, m.actor, m.movie_production_company, m.duration, m.release_date, m.expire_date, m.rated, m.large_image, m.small_image " +
+            "FROM movie m WHERE now() <= adddate(now(),7) and adddate(now(),7) <= m.expire_date and now() > m.release_date " +
+            "ORDER BY m.release_date", nativeQuery = true)
+    Page<Movie> findMovieShowingNow(Pageable pageable);
 
     @Query("SELECT m FROM Movie m WHERE m.releaseDate > :today")
     Page<Movie> findMovieComingSoon(@Param("today") LocalDate today, Pageable pageable);
