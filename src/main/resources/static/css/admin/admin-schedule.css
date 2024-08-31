@@ -30,7 +30,7 @@ label {
 }
 
 .view-schedule {
-    padding: 10px;
+    padding: 10px 10px 2px 10px;
     border: 1px solid azure;
     border-radius: 10px;
 }

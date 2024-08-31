@@ -31,4 +31,8 @@ public class Seat {
 
     @ManyToMany(mappedBy = "seats")
     private Set<Ticket> tickets;
+
+    @ManyToOne
+    @JoinColumn(name = "room_id", referencedColumnName = "room_id")
+    private CinemaRoom cinemaRoom;
 }

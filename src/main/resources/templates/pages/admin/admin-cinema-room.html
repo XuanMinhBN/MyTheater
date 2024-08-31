@@ -17,31 +17,20 @@
                         <h4 class="text-center" style="color: burlywood">
                             Cinema Room Seats Setting
                         </h4>
-                        <form class="row g-3">
-                            <div class="col-6">
-                                <label for="inputAddress" class="form-label">Room</label>
-                                <input type="text" class="form-control" id="inputAddress" />
-                            </div>
-                            <div class="col-6">
-                                <label for="inputAddress2" class="form-label">Note</label>
-                                <input type="text" class="form-control" id="inputAddress2" />
-                            </div>
+                        <form th:action="@{/admin/room/success}" method="post" class="row g-3" th:object="${seat}">
                             <div class="col-md-4">
-                                <label for="inputState" class="form-label"
-                                >Seat Quantity</label
-                                >
-                                <select id="inputState" class="form-select">
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
+                                <label for="inputRoom" class="form-label">Room</label>
+                                <select id="inputRoom" class="form-select" th:field="*{cinemaRoom.id}">
+                                    <option th:each="room:${cinemaRoomList}" th:value="${room.id}" th:text="${room.roomName}"></option>
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="inputCity" class="form-label">Column</label>
-                                <input type="text" class="form-control" id="inputCity" />
+                                <input type="number" class="form-control" id="inputCity" name="column"/>
                             </div>
                             <div class="col-md-4">
                                 <label for="inputZip" class="form-label">Row</label>
-                                <input type="text" class="form-control" id="inputZip" />
+                                <input type="number" class="form-control" id="inputZip" name="row"/>
                             </div>
                             <div class="col-12 text-end">
                                 <button type="submit" class="btn btn-outline-success">

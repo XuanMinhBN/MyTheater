@@ -7,6 +7,7 @@ import org.xumin.mytheater.repository.CinemaRoomRepository;
 import org.xumin.mytheater.service.CinemaRoomService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CinemaRoomServiceImpl implements CinemaRoomService {
@@ -20,5 +21,10 @@ public class CinemaRoomServiceImpl implements CinemaRoomService {
     @Override
     public List<CinemaRoom> getAllCinemaRooms() {
         return cinemaRoomRepository.findAll();
+    }
+
+    @Override
+    public Optional<CinemaRoom> getCinemaRoomById(Long roomId) {
+        return cinemaRoomRepository.findById(roomId);
     }
 }

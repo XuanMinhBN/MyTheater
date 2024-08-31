@@ -31,4 +31,7 @@ public class CinemaRoom {
 
     @OneToMany(mappedBy = "movieRoom", cascade = CascadeType.ALL)
     private List<RoomSchedule> roomScheduleList;
+
+    @OneToMany(mappedBy = "cinemaRoom", cascade = CascadeType.ALL)
+    private List<Seat> seats;
 }

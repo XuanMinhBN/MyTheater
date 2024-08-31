@@ -2,9 +2,8 @@ package org.xumin.mytheater.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.xumin.mytheater.entity.CinemaRoom;
+import org.xumin.mytheater.entity.Seat;
 
 @Repository
-public interface CinemaRoomRepository extends JpaRepository<CinemaRoom, Long> {
-
+public interface SeatRepository extends JpaRepository<Seat, Integer> {
 }
