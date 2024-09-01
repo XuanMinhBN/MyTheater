@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<head>
+    <title>Room Booking</title>
+    <link rel="stylesheet" th:href="@{/css/user/room-booking.css}">
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="container-fluid mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="title-text mb-5">Select Room</h2>
+                    </div>
+                </div>
+                <div class="row room-selection-container">
+                    <div class="col-md-4" th:each="room, iterStat : ${cinemaRoomList}">
+                        <div class="room-card">
+                            <div class="room-title" th:text="${room.roomName}"></div>
+                            <div class="room-details">
+                                <p th:text="'Time: ' + ${startTime}"></p>
+                                <p th:text="'Seat quantity: ' + ${room.seatQuantity}"></p>
+                                <p th:text="'Note: ' + ${room.note}"></p>
+                            </div>
+                            <a th:href="@{/main/movie/select-room(movieScheduleId=${movieScheduleIds[iterStat.index]})}" class="btn btn-light">Select</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

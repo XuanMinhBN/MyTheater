@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<head>
+    <title>Booking</title>
+    <link rel="stylesheet" th:href="@{/css/user/movie-booking.css}">
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="container-fluid set-background">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="title-text mb-5">SHOWTIMES</h2>
+                    </div>
+                </div>
+                <div class="row date-form">
+                    <div class="col-md-2 col-sm-4">
+                        <div class="main-text">
+                            <a th:href="@{'?show_day='+${dateShow}}" type="button" class="btn btn-light date-button" th:each="dateShow:${movieShowDate}">
+                                <span class="date-name" th:text="${dateShow.dayOfWeek}"></span><br>
+                                <span class="date-name-text" th:text="${dateShow.dayOfWeek.SUNDAY==6} ? 'Sun':''"></span>
+                                <span class="date-name-text" th:text="${dateShow.dayOfWeek.MONDAY==0} ? 'Mon':''"></span>
+                                <span class="date-name-text" th:text="${dateShow.dayOfWeek.TUESDAY==1} ? 'Tue':''"></span>
+                                <span class="date-name-text" th:text="${dateShow.dayOfWeek.WEDNESDAY==2} ? 'Wed':''"></span>
+                                <span class="date-name-text" th:text="${dateShow.dayOfWeek.THURSDAY==3} ? 'Thur':''"></span>
+                                <span class="date-name-text" th:text="${dateShow.dayOfWeek.FRIDAY==4} ? 'Fri':''"></span>
+                                <span class="date-name-text" th:text="${dateShow.dayOfWeek.SATURDAY==5} ? 'Sat':''"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="movie-tag">
+                            <div class="movie-theater" th:if="${movie!=null}">
+                                <div class="movie-image">
+                                    <img th:src="@{'/image/movie/'+${movie.smallImage}}" alt="image" width="200">
+                                </div>
+                                <div class="movie-content">
+                                    <div class="movie-title mb-5">
+                                        <h3 class="movie-content-name" th:text="${movie.movieNameVn}"></h3>
+                                        <p class="movie-content-note" th:text="${movie.movieNameEng}"></p>
+                                        <p class="movie-content-note" th:text="${movie.duration+'min'}"></p>
+                                    </div>
+                                    <div class="movie-time">
+                                        <div class="movie-content-time" th:each="time : ${onlyTime}">
+                                            <!-- Nếu selectedDate là ngày hôm nay -->
+                                            <div th:if="${@timeUtils.isToday(selectedDate)}">
+                                                <!-- Hiển thị suất chiếu nếu thời gian là trong tương lai -->
+                                                <div th:if="${@timeUtils.isFutureTime(time)}">
+                                                    <div th:if="${@timeUtils.isFutureTime(time)}">
+                                                        <a th:href="@{/main/booking/room(id=${movie.id}, startTime=${time}, showDate=${show_day})}"
+                                                           class="btn btn-light movie-content-time-item"
+                                                           th:text="${time}"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Nếu selectedDate là ngày trong tương lai -->
+                                            <div th:if="${@timeUtils.isFutureDate(selectedDate)}">
+                                                <a th:href="@{/main/booking/room(id=${movie.id}, startTime=${time}, showDate=${show_day})}"
+                                                   class="btn btn-light movie-content-time-item"
+                                                   th:text="${time}"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="back">
+                                    <a href="/main/home/1" type="button" class="btn btn-outline-light">Back to Homepage</a>
+                                </div>
+                            </div>
+                            <div class="movie-theater" style="color: red" th:if="${movie==null}">
+                                <h1>This movie hasn't had schedule yet!</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

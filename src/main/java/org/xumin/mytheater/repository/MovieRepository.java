@@ -35,4 +35,10 @@ public interface MovieRepository extends JpaRepository<Movie, Long>, PagingAndSo
                 "JOIN genres g ON mg.genres_id = g.genres_id " +
                 "WHERE g.genres_id IN (:genresId)", nativeQuery = true)
     Page<Movie> findMovieByGenres(@Param("genresId") List<Long> genresId, Pageable pageable);
+
+    @Query("SELECT m FROM Movie m " +
+            "JOIN RoomSchedule msc " +
+            "ON m.id = msc.movie.id " +
+            "WHERE m.id = ?1")
+    Movie movieShowTime(Long movieId);
 }

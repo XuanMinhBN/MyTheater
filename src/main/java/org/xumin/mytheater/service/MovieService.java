@@ -18,4 +18,6 @@ public interface MovieService {
     Page<Movie> findByMovieGenres(List<Long> typeIds, Integer page, Integer size);
 
     Optional<Movie> findMovieById(Long movieId);
+
+    Movie movieShowTime(Long movieId);
 }

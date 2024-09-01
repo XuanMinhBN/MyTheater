@@ -15,7 +15,9 @@ import org.xumin.mytheater.entity.Seat;
 import org.xumin.mytheater.service.CinemaRoomService;
 import org.xumin.mytheater.service.MovieService;
 import org.xumin.mytheater.service.RoomScheduleService;
+import org.xumin.mytheater.service.SeatService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -24,12 +26,17 @@ public class AdminController {
     private CinemaRoomService cinemaRoomService;
     private MovieService movieService;
     private RoomScheduleService roomScheduleService;
+    private SeatService seatService;
 
     @Autowired
-    public AdminController(CinemaRoomService cinemaRoomService, MovieService movieService, RoomScheduleService roomScheduleService) {
+    public AdminController(CinemaRoomService cinemaRoomService,
+                           MovieService movieService,
+                           RoomScheduleService roomScheduleService,
+                           SeatService seatService) {
         this.cinemaRoomService = cinemaRoomService;
         this.movieService = movieService;
         this.roomScheduleService = roomScheduleService;
+        this.seatService = seatService;
     }
 
     @GetMapping("/dashboard")
@@ -57,6 +64,13 @@ public class AdminController {
     public String cinemaRoom(@ModelAttribute Seat seat,
                              Model model) {
         List<CinemaRoom> cinemaRoomList = cinemaRoomService.getAllCinemaRooms();
+        List<Seat> seatList = seatService.findSeatByRoomId(1L);
+        List<List<Seat>> seatsByRows = new ArrayList<>();
+        for (int i = 0; i < seatList.size(); i += 8) {
+            seatsByRows.add(seatList.subList(i, Math.min(i + 8, seatList.size())));
+        }
+        model.addAttribute("seatsByRows", seatsByRows);
+        model.addAttribute("seatList", seatList);
         model.addAttribute("seat", seat);
         model.addAttribute("cinemaRoomList", cinemaRoomList);
         return "pages/admin/admin-cinema-room";

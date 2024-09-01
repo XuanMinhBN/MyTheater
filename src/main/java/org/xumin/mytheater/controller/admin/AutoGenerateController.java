@@ -11,6 +11,7 @@ import org.xumin.mytheater.entity.Seat;
 import org.xumin.mytheater.service.CinemaRoomService;
 import org.xumin.mytheater.service.MovieService;
 import org.xumin.mytheater.service.RoomScheduleService;
+import org.xumin.mytheater.service.SeatService;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -24,12 +25,14 @@ public class AutoGenerateController {
     private RoomScheduleService roomScheduleService;
     private MovieService movieService;
     private CinemaRoomService cinemaRoomService;
+    private SeatService seatService;
 
     @Autowired
-    public void setRoomScheduleService(RoomScheduleService roomScheduleService, MovieService movieService, CinemaRoomService cinemaRoomService) {
+    public void setRoomScheduleService(RoomScheduleService roomScheduleService, MovieService movieService, CinemaRoomService cinemaRoomService, SeatService seatService) {
         this.roomScheduleService = roomScheduleService;
         this.movieService = movieService;
         this.cinemaRoomService = cinemaRoomService;
+        this.seatService = seatService;
     }
 
     @PostMapping("/schedule/success")
@@ -76,13 +79,17 @@ public class AutoGenerateController {
                                    @RequestParam("column") int column,
                                    @RequestParam("row") int row){
         CinemaRoom cinemaRoom = cinemaRoomService.getCinemaRoomById(seat.getCinemaRoom().getId()).orElse(null);
-        Long[][] seatMap = new Long[row][column];
-        int seatCounter = 1;
-        for (int i = 0; i < row && seatCounter <= cinemaRoom.getSeatQuantity(); i++) {
-            char rowLetter = (char) ('A' + i);
-            for (int j = 0; j < column && seatCounter <= cinemaRoom.getSeatQuantity(); j++) {
-                seatMap[i][j] = rowLetter + Long.valueOf(j + 1);
-                seatCounter++;
+        String[][] seatMap = seatService.generateSeats(cinemaRoom.getSeatQuantity(), row, column);
+        for (String[] rows : seatMap) {
+            for (String seats : rows) {
+                if (seats != null) {
+                    Seat seatAlt = new Seat();
+                    seatAlt.setCinemaRoom(cinemaRoom);
+                    seatAlt.setSeatName(seats);
+                    seatAlt.setSeatStatus(1);
+                    seatAlt.setSeatType(1);
+                    seatService.addSeat(seatAlt);
+                }
             }
         }
         return "redirect:/admin/room";

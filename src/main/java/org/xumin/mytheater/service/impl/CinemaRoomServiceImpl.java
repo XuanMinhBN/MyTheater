@@ -6,6 +6,8 @@ import org.xumin.mytheater.entity.CinemaRoom;
 import org.xumin.mytheater.repository.CinemaRoomRepository;
 import org.xumin.mytheater.service.CinemaRoomService;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,5 +28,11 @@ public class CinemaRoomServiceImpl implements CinemaRoomService {
     @Override
     public Optional<CinemaRoom> getCinemaRoomById(Long roomId) {
         return cinemaRoomRepository.findById(roomId);
+    }
+
+    @Override
+    public List<CinemaRoom> getCinemaRoomsByMovieIdAndStartTime(Long movieId, LocalTime startTime) {
+//        String formattedTime = startTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+        return cinemaRoomRepository.findByMovieIdAndStartTimeNative(movieId, startTime);
     }
 }

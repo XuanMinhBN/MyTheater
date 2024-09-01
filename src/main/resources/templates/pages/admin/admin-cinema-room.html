@@ -21,16 +21,16 @@
                             <div class="col-md-4">
                                 <label for="inputRoom" class="form-label">Room</label>
                                 <select id="inputRoom" class="form-select" th:field="*{cinemaRoom.id}">
-                                    <option th:each="room:${cinemaRoomList}" th:value="${room.id}" th:text="${room.roomName}"></option>
+                                    <option th:each="room:${cinemaRoomList}" th:value="${room.id}" th:text="${room.roomName+' - '+room.seatQuantity+' seats'}"></option>
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="inputCity" class="form-label">Column</label>
-                                <input type="number" class="form-control" id="inputCity" name="column"/>
+                                <input type="number" class="form-control" id="inputCity" name="column" value="8" required/>
                             </div>
                             <div class="col-md-4">
                                 <label for="inputZip" class="form-label">Row</label>
-                                <input type="number" class="form-control" id="inputZip" name="row"/>
+                                <input type="number" class="form-control" id="inputZip" name="row" value="8" required/>
                             </div>
                             <div class="col-12 text-end">
                                 <button type="submit" class="btn btn-outline-success">
@@ -41,207 +41,12 @@
                     </div>
                     <h4 class="text-center mt-3" style="color: azure">Room Overview</h4>
                     <div class="overview-room mt-2">
-                        <div class="overview-room-1">
-                            <h4 class="text-center" style="color: aqua">Room 1</h4>
+                        <div class="overview-room-" th:each="room:${cinemaRoomList}" th:classappend="${room.id}">
+                            <h4 class="text-center" style="color: aqua" th:text="${room.roomName}"></h4>
                             <div class="container">
                                 <div class="screen"></div>
-
-                                <div class="row">
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="overview-room-2">
-                            <h4 class="text-center" style="color: antiquewhite">Room 2</h4>
-                            <div class="container">
-                                <div class="screen"></div>
-
-                                <div class="row">
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="overview-room-3">
-                            <h4 class="text-center" style="color: darkcyan">Room 3</h4>
-                            <div class="container">
-                                <div class="screen"></div>
-
-                                <div class="row">
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
-                                    <div class="seat"></div>
+                                <div class="row" th:each="row:${seatsByRows}">
+                                    <div class="seat" th:each="seat:${row}" th:text="${seat.seatName}"></div>
                                 </div>
                             </div>
                         </div>

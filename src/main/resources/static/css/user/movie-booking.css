@@ -1,0 +1,118 @@
+.set-background {
+    background-color: transparent;
+}
+
+.main-text {
+    margin-top: 5px;
+    display: flex;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.date-form {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.title-text {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 700;
+    color: azure;
+}
+
+.date-button {
+    padding: 3px 0;
+    border-radius: 100%;
+    min-width: 100px;
+    font-weight: 600;
+    margin-right: 100px;
+}
+
+p{
+    margin: 0;
+}
+
+.date-name {
+    position: relative;
+    text-align: center;
+}
+
+.date-name-text {
+    font-size: .8rem;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 450;
+}
+
+
+/* -------------------------------------------------------------- */
+
+.movie-tag {
+    background-color: rgba(75, 74, 74, 0.349);
+    padding: 10px 10px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    border-radius: 20px;
+    border: 1px solid azure;
+}
+
+.movie-theater {
+    display: flex;
+    padding: 10px 10px;
+}
+
+.movie-content {
+    flex: 1;
+}
+
+.movie-time{
+    display: flex;
+}
+
+.movie-theater:last-child {
+    border: none;
+    padding-bottom: 20px;
+}
+
+.movie-image {
+    cursor: default;
+    min-width: 150px;
+    margin-right: 20px;
+}
+
+.movie-content-name {
+    color: aliceblue;
+}
+
+.movie-content-note {
+    position: relative;
+    top: -10px;
+    color: antiquewhite;
+}
+
+.movie-content-time{
+    margin-right: 10px;
+}
+
+.movie-content-time-item {
+    position: relative;
+    top: -25px;
+    font-weight: 500;
+    min-width: 9%;
+    margin-top: 10px;
+    border: 1px solid rgb(147, 147, 147);
+}
+
+.selected {
+    background-color: rgb(38, 125, 180);
+    color: aliceblue;
+}
+
+.selected:hover {
+    cursor: default;
+    background-color: rgb(38, 125, 180);
+    color: aliceblue;
+}
