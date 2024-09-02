@@ -1,110 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
 <head>
-    <meta charset="UTF-8">
     <title>Booking</title>
   <link rel="stylesheet" th:href="@{/css/user/seat-booking.css}">
 </head>
 <body>
-    <main>
-        <div class="movie-container">
-          <label> Select a movie:</label>
-          <select id="movie">
-            <option value="220">Godzilla vs Kong (RS.220)</option>
-            <option value="320">Radhe (RS.320)</option>
-            <option value="250">RRR (RS.250)</option>
-            <option value="260">F9 (RS.260)</option>
-          </select>
-        </div>
+    <main layout:fragment="content">
+        <form th:action="@{/main/booking/ticket}" method="post">
+            <div class="seat-booking">
+                <div class="movie-container">
+                    <h5>Movie Showing:</h5>
+                    <label>
+                        <input type="hidden" th:value="${movie.id}" name="movie"/>
+                    </label>
+                    <h5 id="movie" th:text="${movie.movieNameEng}"></h5>
+                </div>
 
-        <ul class="showcase">
-          <li>
-            <div class="seat"></div>
-            <small>Available</small>
-          </li>
-          <li>
-            <div class="seat selected"></div>
-            <small>Selected</small>
-          </li>
-          <li>
-            <div class="seat sold"></div>
-            <small>Sold</small>
-          </li>
-        </ul>
-        <div class="container">
-          <div class="screen"></div>
+                <ul class="showcase">
+                    <li>
+                        <div class="seat"></div>
+                        <small>Available</small>
+                    </li>
+                    <li>
+                        <div class="seat selected"></div>
+                        <small>Selected</small>
+                    </li>
+                    <li>
+                        <div class="seat sold"></div>
+                        <small>Sold</small>
+                    </li>
+                </ul>
 
-          <div class="row">
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-          </div>
+                <div class="room-1">
+                    <div class="container">
+                        <div class="screen"></div>
+                        <div id="checkboxes" class="row" th:each="row:${seatsByRows}">
+                            <!--<div class="seat" th:each="seat:${row}" th:value="${seat.seatId}" th:text="${seat.seatName}"></div>-->
+                            <label class="seat" for="movieSeat" th:each="seat:${row}" th:text="${seat.seatName}">
+                                <input type="checkbox" name="seats" id="movieSeat" th:value="${seat.seatId}"/>
+                            </label>
+                        </div>
+                    </div>
+                </div>
 
-          <div class="row">
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat sold"></div>
-            <div class="seat sold"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-          </div>
-          <div class="row">
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat sold"></div>
-            <div class="seat sold"></div>
-          </div>
-          <div class="row">
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-          </div>
-          <div class="row">
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat sold"></div>
-            <div class="seat sold"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-          </div>
-          <div class="row">
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat sold"></div>
-            <div class="seat sold"></div>
-            <div class="seat sold"></div>
-            <div class="seat"></div>
-          </div>
-        </div>
-
-        <p class="text">
-          You have selected <span id="count">0</span> seat for a price of RS.<span
-                id="total"
-        >0</span
-        >
-        </p>
+                <div class="booking">
+                    <button type="submit" class="btn btn-outline-success" style="border: 1px solid green">
+                        <i class="bi bi-check-circle" style="margin-right: 4px;"></i>
+                        Booking
+                    </button>
+                </div>
+            </div>
+        </form>
     </main>
-
-    <script th:src="@{/js/user/seat-booking.js}"></script>
+    <th:block layout:fragment="js">
+      <script th:src="@{/js/user/seat-booking.js}"></script>
+    </th:block>
 </body>
 </html>

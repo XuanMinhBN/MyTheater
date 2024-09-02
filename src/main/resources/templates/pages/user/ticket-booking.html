@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<head>
+    <title>Ticket</title>
+    <link rel="stylesheet" th:href="@{/css/user/ticket-booking.css}">
+</head>
+<body>
+    <main layout:fragment="content">
+        <div class="ticket-container">
+            <div class="card card-left">
+                <h1>
+                    <img th:src="@{'/image/'+logo.svg}" alt="" width="70">
+                    <span>Cinema</span>
+                </h1>
+                <div class="title">
+                    <h2>Captain America: Civil War</h2>
+                </div>
+                <div class="name">
+                    <h2>Mandan Koding</h2>
+                    <span>name</span>
+                </div>
+                <div style="display: flex">
+                    <div class="seat">
+                        <h2>100</h2>
+                        <span>seat</span>
+                    </div>
+                    <div class="time">
+                        <h2>12.00</h2>
+                        <span>time</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-right">
+                <div class="eye"></div>
+                <div class="number">
+                    <h3>100</h3>
+                    <span>seat</span>
+                </div>
+                <div class="barcode"></div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

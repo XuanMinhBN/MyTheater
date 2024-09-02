@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/user/room-booking.css}">
 </head>
 <body>
-    <div layout:fragment="content">
+    <main layout:fragment="content">
         <div class="container-fluid mt-5">
             <div class="container">
                 <div class="row">
@@ -25,12 +25,12 @@
                                 <p th:text="'Seat quantity: ' + ${room.seatQuantity}"></p>
                                 <p th:text="'Note: ' + ${room.note}"></p>
                             </div>
-                            <a th:href="@{/main/movie/select-room(movieScheduleId=${movieScheduleIds[iterStat.index]})}" class="btn btn-light">Select</a>
+                            <a th:href="@{/main/booking/seat(movieScheduleId=${movieScheduleIds[iterStat.index]}, movieId=${movieId}, roomId=${room.id})}" class="btn btn-light">Select</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 </body>
 </html>

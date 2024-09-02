@@ -44,4 +44,9 @@ public class SeatServiceImpl implements SeatService {
     public List<Seat> findSeatByRoomId(Long roomId) {
         return seatRepository.findSeatsByCinemaRoom_Id(roomId);
     }
+
+    @Override
+    public List<Seat> findSeatByScheduleIdAndRoomId(Long scheduleId, Long roomId) {
+        return seatRepository.findSeatsByScheduleIdAndRoomId(scheduleId, roomId);
+    }
 }

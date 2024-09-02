@@ -10,4 +10,6 @@ public interface SeatService {
     String[][] generateSeats(int totalSeats, int seatRow, int seatCol);
 
     List<Seat> findSeatByRoomId(Long roomId);
+
+    List<Seat> findSeatByScheduleIdAndRoomId(Long scheduleId, Long roomId);
 }
