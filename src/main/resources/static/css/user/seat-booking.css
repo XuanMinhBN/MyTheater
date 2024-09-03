@@ -47,10 +47,6 @@
     border-top-right-radius: 10px;
 }
 
-#checkboxes input[type="checkbox"] {
-    display: none;
-}
-
 .seat.selected {
     background-color: green;
 }
@@ -128,4 +124,12 @@ p.text span {
 
 .room-3 .seat:nth-last-of-type(2) {
     margin-left: 18px;
+}
+
+.schedule-container{
+    display: flex;
+}
+
+.schedule-container h5 {
+    margin-right: 4px;
 }

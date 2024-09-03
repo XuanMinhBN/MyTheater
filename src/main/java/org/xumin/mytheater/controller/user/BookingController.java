@@ -1,19 +1,13 @@
-package org.xumin.mytheater.controller.admin;
+package org.xumin.mytheater.controller.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.xumin.mytheater.entity.CinemaRoom;
-import org.xumin.mytheater.entity.Movie;
-import org.xumin.mytheater.entity.RoomSchedule;
-import org.xumin.mytheater.entity.Seat;
-import org.xumin.mytheater.service.CinemaRoomService;
-import org.xumin.mytheater.service.MovieService;
-import org.xumin.mytheater.service.RoomScheduleService;
-import org.xumin.mytheater.service.SeatService;
+import org.xumin.mytheater.entity.*;
+import org.xumin.mytheater.service.*;
 
-import java.text.SimpleDateFormat;
 import java.time.*;
 import java.util.*;
 
@@ -24,13 +18,19 @@ public class BookingController {
     private MovieService movieService;
     private CinemaRoomService cinemaRoomService;
     private SeatService seatService;
+    private TicketService ticketService;
+    private AccountService accountService;
 
     @Autowired
-    public void setRoomScheduleService(RoomScheduleService roomScheduleService, MovieService movieService, CinemaRoomService cinemaRoomService, SeatService seatService) {
+    public void setRoomScheduleService(RoomScheduleService roomScheduleService, MovieService movieService,
+                                       CinemaRoomService cinemaRoomService, SeatService seatService,
+                                       TicketService ticketService, AccountService accountService) {
         this.roomScheduleService = roomScheduleService;
         this.movieService = movieService;
         this.cinemaRoomService = cinemaRoomService;
         this.seatService = seatService;
+        this.ticketService = ticketService;
+        this.accountService = accountService;
     }
 
     @GetMapping("/booking/movie/{movieId}")
@@ -40,7 +40,7 @@ public class BookingController {
         LocalDate date;
         LocalDate dateToday = LocalDate.now();
         List<RoomSchedule> movieShowTime;
-        if(today == null){
+        if(today == null || today.isEmpty()){
             date = LocalDate.now();
             movieShowTime = roomScheduleService.movieShowTime(date,movieId);
         }else{
@@ -66,12 +66,18 @@ public class BookingController {
     @GetMapping("/booking/room")
     public String roomBooking(@RequestParam("id") Long movieId,
                               @RequestParam("startTime") LocalTime startTime,
-                              @RequestParam("showDate") LocalDate showDate,
+                              @RequestParam(value = "showDate", required = false) LocalDate showDate,
                               Model model){
+        LocalDate today;
+        if(showDate == null){
+            today = LocalDate.now();
+        }else{
+            today = LocalDate.parse(showDate.toString());
+        }
         // Lấy danh sách phòng dựa trên movieId và startTime
         List<CinemaRoom> cinemaRoomList = cinemaRoomService.getCinemaRoomsByMovieIdAndStartTime(movieId, startTime);
         // Lấy movieScheduleIds cho các phòng
-        List<Long> movieScheduleIds = roomScheduleService.getMovieScheduleIdsForRooms(cinemaRoomList, movieId, startTime, showDate);
+        List<Long> movieScheduleIds = roomScheduleService.getMovieScheduleIdsForRooms(cinemaRoomList, movieId, startTime, today);
         model.addAttribute("cinemaRoomList", cinemaRoomList);
         model.addAttribute("movieId", movieId);
         model.addAttribute("startTime", startTime);
@@ -85,20 +91,41 @@ public class BookingController {
                               @RequestParam("roomId") Long roomId,
                               Model model){
         List<Seat> seatList = seatService.findSeatByScheduleIdAndRoomId(movieScheduleId,roomId);
-        Movie movie = movieService.findMovieById(movieId).orElse(null);
+        RoomSchedule roomSchedule = roomScheduleService.findRoomScheduleById(movieScheduleId).orElse(null);
         List<List<Seat>> seatsByRow = new ArrayList<>();
         for (int i = 0; i < seatList.size(); i += 8) {
             seatsByRow.add(seatList.subList(i, Math.min(i + 8, seatList.size())));
         }
         model.addAttribute("seatsByRows", seatsByRow);
         model.addAttribute("seatList", seatList);
-        model.addAttribute("movie", movie);
+        model.addAttribute("roomSchedule", roomSchedule);
         return "pages/user/seat-booking";
     }
 
     @GetMapping("/booking/ticket")
-    public String ticketBooking(){
-
+    public String ticketBooking(@RequestParam("seats") List<Long> selectedSeats,
+                                @RequestParam("schedule") Long scheduleId,
+                                Model model){
+        List<Ticket> ticketList = new ArrayList<>();
+        for(Long id : selectedSeats){
+            Ticket ticket = new Ticket();
+            RoomSchedule roomSchedule = roomScheduleService.findRoomScheduleById(scheduleId).orElse(null);
+            Account accountAlt = accountService.findByUsername(accountService.getCurrentUsername());
+            Seat seat = seatService.findSeatById(id).orElse(null);
+            ticket.setRoomSchedule(roomSchedule);
+            ticket.setAccount(accountAlt);
+            if(ticket.getRoomSchedule().getShowDate().getDayOfWeek().equals(DayOfWeek.SUNDAY) || ticket.getRoomSchedule().getShowDate().getDayOfWeek().equals(DayOfWeek.SATURDAY)){
+                ticket.setPrice(55000);
+            }else {
+                ticket.setPrice(45000);
+            }
+            ticket.setSeat(seat);
+            ticketList.add(ticket);
+        }
+        for(Ticket ticket : ticketList){
+            ticketService.addTicket(ticket);
+        }
+        model.addAttribute("ticketList", ticketList);
         return "pages/user/ticket-booking";
     }
 }

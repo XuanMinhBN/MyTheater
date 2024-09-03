@@ -38,11 +38,7 @@ public class Ticket {
     @JoinColumn(name = "invoice_id", referencedColumnName = "invoice_id")
     private Invoice invoice;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "ticket_seat",
-            joinColumns = {@JoinColumn(name = "ticket_id")},
-            inverseJoinColumns = {@JoinColumn(name = "seat_id")}
-    )
-    private Set<Seat> seats;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "seat_id", referencedColumnName = "seat_id")
+    private Seat seat;
 }

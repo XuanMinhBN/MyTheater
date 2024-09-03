@@ -9,14 +9,19 @@
 </head>
 <body>
     <main layout:fragment="content">
-        <form th:action="@{/main/booking/ticket}" method="post">
+        <form id="myForm" th:action="@{/main/booking/ticket}" method="get">
             <div class="seat-booking">
                 <div class="movie-container">
                     <h5>Movie Showing:</h5>
+                    <h5 id="movie" th:text="${roomSchedule.movie.movieNameEng}"></h5>
+                </div>
+
+                <div class="schedule-container">
+                    <h5>Schedule Showing:</h5>
                     <label>
-                        <input type="hidden" th:value="${movie.id}" name="movie"/>
+                        <input type="hidden" th:value="${roomSchedule.id}" name="schedule"/>
                     </label>
-                    <h5 id="movie" th:text="${movie.movieNameEng}"></h5>
+                    <h5 th:text="${roomSchedule.startTime+' - '+roomSchedule.showDate}"></h5>
                 </div>
 
                 <ul class="showcase">
@@ -38,9 +43,8 @@
                     <div class="container">
                         <div class="screen"></div>
                         <div id="checkboxes" class="row" th:each="row:${seatsByRows}">
-                            <!--<div class="seat" th:each="seat:${row}" th:value="${seat.seatId}" th:text="${seat.seatName}"></div>-->
-                            <label class="seat" for="movieSeat" th:each="seat:${row}" th:text="${seat.seatName}">
-                                <input type="checkbox" name="seats" id="movieSeat" th:value="${seat.seatId}"/>
+                            <label for="movieSeat">
+                                <input class="seat" type="checkbox" th:each="seat:${row}" th:value="${seat.seatId}" th:text="${seat.seatName}" name="seats" id="movieSeat"/>
                             </label>
                         </div>
                     </div>

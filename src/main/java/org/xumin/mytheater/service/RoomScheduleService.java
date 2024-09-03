@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface RoomScheduleService {
     List<RoomSchedule> getAllRoomSchedule();
@@ -23,4 +24,6 @@ public interface RoomScheduleService {
     Long findMovieScheduleIdByRoomAndTime(Long roomId, Long movieId, LocalTime startTime, LocalDate showDate);
 
     List<Long> getMovieScheduleIdsForRooms(List<CinemaRoom> cinemaRooms, Long movieId, LocalTime startTime, LocalDate showDate);
+
+    Optional<RoomSchedule> findRoomScheduleById(Long roomScheduleId);
 }

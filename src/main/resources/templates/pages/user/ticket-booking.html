@@ -9,14 +9,14 @@
 </head>
 <body>
     <main layout:fragment="content">
-        <div class="ticket-container">
+        <div class="ticket-container" th:each="ticket:${ticketList}">
             <div class="card card-left">
                 <h1>
                     <img th:src="@{'/image/'+logo.svg}" alt="" width="70">
                     <span>Cinema</span>
                 </h1>
                 <div class="title">
-                    <h2>Captain America: Civil War</h2>
+                    <h2 th:text="${ticket.roomSchedule.movie.movieNameEng}"></h2>
                 </div>
                 <div class="name">
                     <h2>Mandan Koding</h2>
@@ -24,11 +24,11 @@
                 </div>
                 <div style="display: flex">
                     <div class="seat">
-                        <h2>100</h2>
+                        <h2 th:text="${ticket.seat.seatName}"></h2>
                         <span>seat</span>
                     </div>
                     <div class="time">
-                        <h2>12.00</h2>
+                        <h2 th:text="${ticket.roomSchedule.startTime}"></h2>
                         <span>time</span>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
             <div class="card card-right">
                 <div class="eye"></div>
                 <div class="number">
-                    <h3>100</h3>
+                    <h3 th:text="${ticket.seat.seatName}"></h3>
                     <span>seat</span>
                 </div>
                 <div class="barcode"></div>

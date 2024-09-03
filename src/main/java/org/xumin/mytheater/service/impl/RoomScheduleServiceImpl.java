@@ -15,6 +15,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -67,5 +68,10 @@ public class RoomScheduleServiceImpl implements RoomScheduleService {
         return cinemaRooms.stream()
                 .map(room -> findMovieScheduleIdByRoomAndTime(room.getId(), movieId, startTime, showDate))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<RoomSchedule> findRoomScheduleById(Long roomScheduleId) {
+        return roomScheduleRepository.findById(roomScheduleId);
     }
 }
