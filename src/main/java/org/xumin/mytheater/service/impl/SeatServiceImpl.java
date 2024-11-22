@@ -8,6 +8,7 @@ import org.xumin.mytheater.service.SeatService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class SeatServiceImpl implements SeatService {
@@ -54,5 +55,10 @@ public class SeatServiceImpl implements SeatService {
     @Override
     public Optional<Seat> findSeatById(Long id) {
         return seatRepository.findById(id);
+    }
+
+    @Override
+    public List<Seat> findSeatsBySeatIds(Set<Long> seatIds) {
+        return seatRepository.findSeatsBySeatIds(seatIds);
     }
 }

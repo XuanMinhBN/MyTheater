@@ -29,9 +29,6 @@ public class Seat {
     @Column(name = "seat_type")
     private int seatType;
 
-    @OneToOne(mappedBy = "seat", cascade = CascadeType.ALL)
-    private Ticket ticket;
-
     @ManyToOne
     @JoinColumn(name = "room_id", referencedColumnName = "room_id")
     private CinemaRoom cinemaRoom;

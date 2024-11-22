@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -37,8 +38,4 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "invoice_id", referencedColumnName = "invoice_id")
     private Invoice invoice;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "seat_id", referencedColumnName = "seat_id")
-    private Seat seat;
 }

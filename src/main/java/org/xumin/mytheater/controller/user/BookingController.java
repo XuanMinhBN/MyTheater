@@ -97,35 +97,17 @@ public class BookingController {
             seatsByRow.add(seatList.subList(i, Math.min(i + 8, seatList.size())));
         }
         model.addAttribute("seatsByRows", seatsByRow);
-        model.addAttribute("seatList", seatList);
+//        model.addAttribute("seatList", seatList);
         model.addAttribute("roomSchedule", roomSchedule);
         return "pages/user/seat-booking";
     }
 
     @GetMapping("/booking/ticket")
-    public String ticketBooking(@RequestParam("seats") List<Long> selectedSeats,
+    public String ticketBooking(@RequestParam("seats") Set<Long> selectedSeats,
                                 @RequestParam("schedule") Long scheduleId,
                                 Model model){
-        List<Ticket> ticketList = new ArrayList<>();
-        for(Long id : selectedSeats){
-            Ticket ticket = new Ticket();
-            RoomSchedule roomSchedule = roomScheduleService.findRoomScheduleById(scheduleId).orElse(null);
-            Account accountAlt = accountService.findByUsername(accountService.getCurrentUsername());
-            Seat seat = seatService.findSeatById(id).orElse(null);
-            ticket.setRoomSchedule(roomSchedule);
-            ticket.setAccount(accountAlt);
-            if(ticket.getRoomSchedule().getShowDate().getDayOfWeek().equals(DayOfWeek.SUNDAY) || ticket.getRoomSchedule().getShowDate().getDayOfWeek().equals(DayOfWeek.SATURDAY)){
-                ticket.setPrice(55000);
-            }else {
-                ticket.setPrice(45000);
-            }
-            ticket.setSeat(seat);
-            ticketList.add(ticket);
-        }
-        for(Ticket ticket : ticketList){
-            ticketService.addTicket(ticket);
-        }
-        model.addAttribute("ticketList", ticketList);
+        RoomSchedule roomSchedule = roomScheduleService.findRoomScheduleById(scheduleId).orElse(null);
+        List<Seat> seatList = seatService.findSeatsBySeatIds(selectedSeats);
         return "pages/user/ticket-booking";
     }
 }
