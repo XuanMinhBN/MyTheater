@@ -9,7 +9,7 @@
 </head>
 <body>
     <main layout:fragment="content">
-        <div class="ticket-container" th:each="ticket:${ticketList}">
+        <div class="ticket-container" >
             <div class="card card-left">
                 <h1>
                     <img th:src="@{'/image/'+logo.svg}" alt="" width="70">
@@ -23,9 +23,10 @@
                     <span>name</span>
                 </div>
                 <div style="display: flex">
-                    <div class="seat">
-                        <h2 th:text="${ticket.seat.seatName}"></h2>
-                        <span>seat</span>
+                    <div class="seat" style="margin-top: 14px">
+                        <span th:each="seat:${seats}" th:text="${seat.seatName}" style="margin: 2px; font-size: 14px"></span>
+                        <br/>
+                        <span >seat</span>
                     </div>
                     <div class="time">
                         <h2 th:text="${ticket.roomSchedule.startTime}"></h2>
@@ -35,8 +36,9 @@
             </div>
             <div class="card card-right">
                 <div class="eye"></div>
-                <div class="number">
-                    <h3 th:text="${ticket.seat.seatName}"></h3>
+                <div class="number" >
+                    <span th:each="seat:${seats}" th:text="${seat.seatName}" style="margin: 2px"></span>
+                    <br>
                     <span>seat</span>
                 </div>
                 <div class="barcode"></div>

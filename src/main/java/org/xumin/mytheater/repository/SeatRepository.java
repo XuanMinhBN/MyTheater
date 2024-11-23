@@ -2,6 +2,7 @@ package org.xumin.mytheater.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.xumin.mytheater.entity.Seat;
 
@@ -18,5 +19,6 @@ public interface SeatRepository extends JpaRepository<Seat, Long> {
             "WHERE rs.id = ?1 AND s.cinemaRoom.id = ?2")
     List<Seat> findSeatsByScheduleIdAndRoomId(Long scheduleId, Long roomId);
 
-    List<Seat> findSeatsBySeatIds(Set<Long> seatIds);
+    @Query(value = "SELECT * FROM seat s WHERE s.seat_id IN (:seatIds)", nativeQuery = true)
+    List<Seat> findSeatsBySeatIds(@Param("seatIds") Set<Long> seatIds);
 }

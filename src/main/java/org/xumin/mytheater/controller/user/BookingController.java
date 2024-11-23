@@ -2,6 +2,7 @@ package org.xumin.mytheater.controller.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,17 +21,19 @@ public class BookingController {
     private SeatService seatService;
     private TicketService ticketService;
     private AccountService accountService;
+    private TicketSeatService ticketSeatService;
 
     @Autowired
     public void setRoomScheduleService(RoomScheduleService roomScheduleService, MovieService movieService,
                                        CinemaRoomService cinemaRoomService, SeatService seatService,
-                                       TicketService ticketService, AccountService accountService) {
+                                       TicketService ticketService, AccountService accountService, TicketSeatService ticketSeatService) {
         this.roomScheduleService = roomScheduleService;
         this.movieService = movieService;
         this.cinemaRoomService = cinemaRoomService;
         this.seatService = seatService;
         this.ticketService = ticketService;
         this.accountService = accountService;
+        this.ticketSeatService = ticketSeatService;
     }
 
     @GetMapping("/booking/movie/{movieId}")
@@ -105,9 +108,31 @@ public class BookingController {
     @GetMapping("/booking/ticket")
     public String ticketBooking(@RequestParam("seats") Set<Long> selectedSeats,
                                 @RequestParam("schedule") Long scheduleId,
+                                @AuthenticationPrincipal AuthUser authUser,
                                 Model model){
+        Account account = accountService.findByUsername(authUser.getUsername());
         RoomSchedule roomSchedule = roomScheduleService.findRoomScheduleById(scheduleId).orElse(null);
         List<Seat> seatList = seatService.findSeatsBySeatIds(selectedSeats);
+        Long ticketId = 0L;
+        for(int i=0; i<seatList.size(); i++){
+           Ticket ticket = new Ticket();
+           ticket.setPrice(45000);
+           ticket.setTicketType(0);
+           ticket.setAccount(account);
+           ticket.setRoomSchedule(roomSchedule);
+           ticketService.addTicket(ticket);
+           List<Ticket> ticketList = ticketService.findAllTickets();
+           Ticket ticketAlt = ticketList.get(0);
+           ticketId = ticketAlt.getId();
+           model.addAttribute("ticket", ticketAlt);
+        }
+        for(Seat seat : seatList){
+            TicketSeat ticketSeat = new TicketSeat();
+            ticketSeat.setTicketId(ticketId);
+            ticketSeat.setSeatId(seat.getSeatId());
+            ticketSeatService.addTicketSeat(ticketSeat);
+        }
+        model.addAttribute("seats", seatList);
         return "pages/user/ticket-booking";
     }
 }

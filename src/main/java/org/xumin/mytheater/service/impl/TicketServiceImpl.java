@@ -6,6 +6,8 @@ import org.xumin.mytheater.entity.Ticket;
 import org.xumin.mytheater.repository.TicketRepository;
 import org.xumin.mytheater.service.TicketService;
 
+import java.util.List;
+
 @Service
 public class TicketServiceImpl implements TicketService {
     private final TicketRepository ticketRepository;
@@ -13,6 +15,16 @@ public class TicketServiceImpl implements TicketService {
     @Autowired
     public TicketServiceImpl(TicketRepository ticketRepository) {
         this.ticketRepository = ticketRepository;
+    }
+
+    @Override
+    public List<Ticket> findAllTickets() {
+        return ticketRepository.findAllTicketDesc();
+    }
+
+    @Override
+    public Ticket findTicketById(Long id) {
+        return ticketRepository.findTicketById(id);
     }
 
     @Override
