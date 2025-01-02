@@ -31,6 +31,15 @@ public class HomePageController {
         this.movieTrailerService = movieTrailerService;
     }
 
+    @GetMapping("/home")
+    public String homePage( Model model) {
+        List<Movie> movies = movieService.findAll();
+        model.addAttribute("movieList", movies);
+//        model.addAttribute("totalPage",movies.getTotalPages());
+//        model.addAttribute("currentPage",page);
+        return "pages/user/home-page";
+    }
+
     //Display movie list with pagination
     @GetMapping("/home/{number}")
     public String view(@PathVariable(name = "number") Long number ,

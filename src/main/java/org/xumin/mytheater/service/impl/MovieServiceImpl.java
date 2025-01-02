@@ -24,6 +24,12 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    public List<Movie> findAll() {
+//        Pageable pageable = PageRequest.of(page, size);
+        return movieRepository.findAll();
+    }
+
+    @Override
     public List<Movie> getMoviesToday() {
         return movieRepository.findMovieToday();
     }

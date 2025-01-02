@@ -14,6 +14,8 @@ import java.util.List;
 
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Long>, PagingAndSortingRepository<Movie, Long> {
+//    List<Movie> findAll();
+
     @Query(value = "SELECT m.movie_id, m.movie_name_vn, m.movie_name_eng, m.content, m.director, m.actor, m.movie_production_company, m.duration, m.release_date, m.expire_date, m.rated, m.large_image, m.small_image " +
             "FROM movie m WHERE now() <= adddate(now(),7) and adddate(now(),7) <= m.expire_date and now() > m.release_date " +
             "ORDER BY m.release_date", nativeQuery = true)
